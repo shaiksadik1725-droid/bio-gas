@@ -1,46 +1,94 @@
 # LSTM-Based Biogas Monitoring & Feeding Control
 
-An embedded-AI project that reads temperature, pH, and gas measurements from a microcontroller, trains an LSTM time-series model, predicts future gas behavior, and returns control decisions to the embedded system.
+<p align="center">
+  <strong>Time-series AI for sensor-based biogas monitoring and control decisions</strong>
+</p>
 
-## Workflow
-1. Sensor data is streamed through serial communication.
-2. Temperature, pH, and gas readings are collected.
-3. A MinMax scaler prepares the time series.
-4. An LSTM learns recent gas behavior.
-5. The saved model predicts the next gas value.
-6. Rule-based logic converts measurements and predictions into control commands.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/TensorFlow-LSTM-FF6F00?logo=tensorflow&logoColor=white" />
+  <img src="https://img.shields.io/badge/Serial-Embedded_Interface-4B5563" />
+</p>
 
-## Technology
-Python, TensorFlow/Keras, Pandas, NumPy, scikit-learn, Joblib, PySerial, ESP32/Arduino firmware.
+## Project at a Glance
 
-## Structure
+| Item | Details |
+|---|---|
+| Domain | Biogas process monitoring |
+| Inputs | Temperature, pH, gas reading |
+| AI approach | LSTM time-series prediction |
+| Interface | Serial communication with embedded hardware |
+| Output | Predicted gas behavior + control decision |
+| Status | Academic AI/embedded prototype |
+
+## Overview
+
+The project reads live sensor data from a microcontroller, builds a recent time-series window, trains an LSTM model, predicts future gas behavior, and combines that prediction with threshold logic to generate embedded control commands.
+
+## Data & Decision Pipeline
+
+```mermaid
+flowchart LR
+    A[Temperature / pH / Gas Sensors] --> B[Microcontroller]
+    B --> C[Serial Stream]
+    C --> D[Python Data Buffer]
+    D --> E[Scaling]
+    E --> F[LSTM Prediction]
+    F --> G[Decision Logic]
+    G --> H[Control Command]
+    H --> B
+```
+
+## Technology Stack
+
+- Python
+- TensorFlow / Keras
+- Pandas
+- NumPy
+- scikit-learn
+- Joblib
+- PySerial
+- Embedded firmware
+
+## Repository Structure
+
 ```text
 bio-gas/
 ├── ESP32/
 ├── LSTM_AI.py
 ├── predict.py
 ├── biogas_lstm_model.h5
-└── biogas_scaler.pkl
+├── biogas_scaler.pkl
+├── requirements.txt
+└── .gitignore
 ```
 
-## Training
-Connect the sensor system to the configured serial port, then:
+## Setup
 
 ```bash
-python LSTM_AI.py
+git clone https://github.com/shaiksadik1725-droid/bio-gas.git
+cd bio-gas
+pip install -r requirements.txt
 ```
 
-## Prediction
-```bash
-python predict.py
-```
+Configure the correct serial port before running the training or prediction scripts.
 
-## Future Improvements
-- Move COM-port settings to configuration
-- Save training datasets for reproducibility
-- Add train/test evaluation rather than online-only fitting
-- Add dashboard visualization
-- Add safety interlocks and actuator acknowledgements
+## Engineering Notes
+
+The AI prediction is combined with deterministic threshold logic rather than being used as the only safety mechanism. This separation is important for physical control systems.
+
+## Future Work
+
+- Move COM-port settings into configuration
+- Save versioned training datasets
+- Add train/validation/test evaluation
+- Add a monitoring dashboard
+- Add actuator acknowledgement
+- Add fail-safe state handling
+- Add reproducible experiments
 
 ## Author
+
 **Sadik Shaik**
+
+Computer Engineering · Artificial Intelligence · Embedded Systems
