@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/TensorFlow-LSTM-FF6F00?logo=tensorflow&logoColor=white" />
   <img src="https://img.shields.io/badge/Serial-Embedded_Interface-4B5563" />
+  <a href="https://github.com/shaiksadik1725-droid/bio-gas/actions/workflows/python-syntax.yml"><img src="https://github.com/shaiksadik1725-droid/bio-gas/actions/workflows/python-syntax.yml/badge.svg" alt="Python syntax check" /></a>
 </p>
 
 ## Project at a Glance
